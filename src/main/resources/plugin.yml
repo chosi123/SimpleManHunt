@@ -1,0 +1,4 @@
+name: manhunt
+version: '1.0-SNAPSHOT'
+main: org.chosi123.manhunt.ManHunt
+api-version: '1.21'
