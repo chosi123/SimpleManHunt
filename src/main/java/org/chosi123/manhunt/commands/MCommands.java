@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.chosi123.manhunt.game.GameManager;
 import org.jetbrains.annotations.NotNull;
 
 public class MCommands implements CommandExecutor {
@@ -20,11 +21,12 @@ public class MCommands implements CommandExecutor {
             if (target == null){
                 sender.sendMessage("해당 플레이어를 찾을 수 없습니다.");
                 return false;
-
-
             }
 
-            target.sendMessage("술래로 지정되었습니다.");
+            GameManager.INSTANCE.startGame(target);
+            if(!GameManager.INSTANCE.getGameStatus()){
+                sender.sendMessage("게임이 이미 진행 중입니다.");
+            }
 
             return true;
         }
