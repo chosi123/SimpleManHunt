@@ -11,7 +11,7 @@ public final class ManHunt extends JavaPlugin {
     public void onEnable() {
         this.getCommand("gamestart").setExecutor(new MCommands());
         Bukkit.getPluginManager().registerEvents(GameManager.INSTANCE, this);
-        getLogger().info("헌팅게임 플러그인이 활성화되었습니다.");
+        getLogger().info("술래잡기 플러그인이 활성화되었습니다.");
 
     }
 

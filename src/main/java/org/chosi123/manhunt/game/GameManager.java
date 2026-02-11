@@ -12,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.time.Duration;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class GameManager implements Listener{
     private static final int MAP_SIZE;
@@ -58,13 +59,14 @@ public class GameManager implements Listener{
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
-
-        if(hunterId.equals(event.getPlayer().getUniqueId())){
+        Player diedPlayer = event.getPlayer();
+        //헌터가 죽음: 게임 오버
+        if(hunterId.equals(diedPlayer.getUniqueId())){
             for(Player p : Bukkit.getOnlinePlayers()){
                 p.showTitle(
                         Title.title(
                                 Component.text("게임이 종료되었습니다!"),
-                                Component.empty(),
+                                Component.text("도망자 승리!"),
                                 Title.Times.times(
                                         Duration.ofSeconds(1),
                                         Duration.ofSeconds(4),
@@ -73,7 +75,21 @@ public class GameManager implements Listener{
                         )
                 );
             }
+            diedPlayer.setGameMode(org.bukkit.GameMode.SPECTATOR);
             isGameStart = false;
+            event.deathMessage(Component.text(diedPlayer.getName() + "이 탈락하셨습니다."));
+        }
+        else{
+            diedPlayer.setGameMode(org.bukkit.GameMode.SPECTATOR);
+            event.deathMessage(Component.text(
+                    diedPlayer.getName() +
+                    "이 게임에서 탈락하셧습니다. " +
+                            (Bukkit.getOnlinePlayers().stream()
+                            .filter(p->p.getGameMode() == org.bukkit.GameMode.SURVIVAL).toList().size() - 1) +
+                            "명 남았습니다."));
+            diedPlayer.kick(Component.text("게임에서 탈락하셨습니다!"));
+
+
         }
     }
 
