@@ -14,6 +14,11 @@ repositories {
     }
 }
 
+tasks.jar{
+    archiveFileName = 'ManHuntTest.jar'
+    destinationDirectory = file('C:\\Users\\fyg75\\OneDrive\\바탕 화면\\1.21.11_Server\\plugins')
+}
+
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 }
