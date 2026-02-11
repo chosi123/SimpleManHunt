@@ -39,6 +39,20 @@ public class GameManager implements Listener{
         border.setCenter(0, 0);
         border.setSize(MAP_SIZE * 2);
 
+        for(Player p : Bukkit.getOnlinePlayers()){
+            p.showTitle(
+                    Title.title(
+                            Component.text("게임이 시작되었습니다!"),
+                            Component.empty(),
+                            Title.Times.times(
+                                    Duration.ofSeconds(1),
+                                    Duration.ofSeconds(2),
+                                    Duration.ofSeconds(1)
+                            )
+                    )
+            );
+        }
+
 
     }
 
