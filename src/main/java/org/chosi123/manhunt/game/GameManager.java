@@ -84,6 +84,7 @@ public class GameManager implements Listener{
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
+        if(!isGameStart) return;
         Player diedPlayer = event.getPlayer();
         //헌터가 죽음: 게임 오버
         if(hunterId.equals(diedPlayer.getUniqueId())){
