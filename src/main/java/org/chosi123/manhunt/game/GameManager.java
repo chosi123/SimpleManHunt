@@ -105,6 +105,7 @@ public class GameManager implements Listener{
             isGameStart = false;
             event.deathMessage(Component.text(diedPlayer.getName() + "이 탈락하셨습니다."));
         }
+        //도망자가 죽음
         else{
             diedPlayer.setGameMode(org.bukkit.GameMode.SPECTATOR);
             event.deathMessage(Component.text(
