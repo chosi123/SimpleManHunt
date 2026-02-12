@@ -58,6 +58,31 @@ public class GameManager implements Listener{
     }
 
     @EventHandler
+    public void onPickUpDragonEgg(EntityPickupItemEvent event){
+        if(!isGameStart) return;
+        if(!(event.getEntity() instanceof Player)) return;
+
+        Player player = (Player) event.getEntity();
+
+        if(event.getItem().getItemStack().getType() == org.bukkit.Material.DRAGON_EGG){
+            for(Player p : Bukkit.getOnlinePlayers()){
+                p.showTitle(
+                        Title.title(
+                                Component.text("게임이 종료되었습니다!"),
+                                Component.text("도망자 승리!"),
+                                Title.Times.times(
+                                        Duration.ofSeconds(1),
+                                        Duration.ofSeconds(4),
+                                        Duration.ofSeconds(1)
+                                )
+                        )
+                );
+            }
+        }
+
+    }
+
+    @EventHandler
     public void onDeath(PlayerDeathEvent event){
         Player diedPlayer = event.getPlayer();
         //헌터가 죽음: 게임 오버
