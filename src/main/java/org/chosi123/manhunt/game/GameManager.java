@@ -8,11 +8,11 @@ import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.time.Duration;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class GameManager implements Listener{
     private static final int MAP_SIZE;
