@@ -113,7 +113,7 @@ public class GameManager implements Listener{
                             (Bukkit.getOnlinePlayers().stream()
                             .filter(p->p.getGameMode() == org.bukkit.GameMode.SURVIVAL).toList().size() - 1) +
                             "명 남았습니다."));
-            diedPlayer.kick(Component.text("게임에서 탈락하셨습니다!"));
+            diedPlayer.kick(Component.text("게임에서 탈락하셨습니다! 재접속 시 관전하실 수 있습니다."));
 
 
         }
